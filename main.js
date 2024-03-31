@@ -312,7 +312,6 @@ class UI {
     document.querySelector('#answers').classList.remove('hidden');
     document.querySelector('.swiper-custom-pagination').classList.remove('hidden');
     this.swiperHandler.initSwiper();
-
     Array.from(document.querySelectorAll('.swiper-custom-pagination > .indicator'))
       .forEach((e, i) => {
         quizzesWithAnswers[i].isCorrect
@@ -390,27 +389,20 @@ class Controller {
   }
 
   saveTestResults() {
-    const results = {};
-    const quizzes = this.game.getQuizzes();
-    alert(quizzes);
-    for (let i = 0; i < quizzes.length; i++) {
-      results[i] = {
-        id: quizzes[i].id,
-        type: quizzes[i].type,
-        isCorrect: quizzes[i].isCorrect || false,
-
-      };
-      if (quizzes[i].userAnswer) {
-        results[i]['userAnswer'] = quizzes[i].userAnswer;
-      }
-
-      if (quizzes[i].choices) {
-        results[i]['choices'] = quizzes[i].choices;
+    const testResults = {
+      quizzesResults: this.game.getQuizzes(),
+      correct_total: {
+        correct_answers: this.game.getNumberOfCorrectAnswers(),
+        total_questions: this.game.numberOfQuizzes
       }
     }
+    localStorage.setItem('testResults', JSON.stringify(testResults));}
 
-    localStorage.setItem('testResults', JSON.stringify(results));
-  }
+  /*saveTestResults() {
+    localStorage.setItem('testResults', JSON.stringify(this.game.getQuizzes()));
+  }*/
+
+
 
   async submitAnswer(byUser) {
     if (this.isSubmittingAnswer) {
@@ -435,6 +427,23 @@ class Controller {
 
     let index = this.game.getCurrentQuizIndex();
     let isCorrect = this.quizService.checkUserAnswer(answer, index, this.game.getQuizzes());
+
+    // Создание копии исходного объекта quizzes
+    let updatedQuiz = Object.assign({}, this.game.getQuizzes()[index]);
+
+    // Или с использованием оператора расширения
+    // let updatedQuiz = { ...this.game.getQuizzes()[index] };
+
+    // Обновление копии объекта с добавлением информации о ответе пользователя
+    updatedQuiz.userAnswer = answer;
+    updatedQuiz.isCorrect = isCorrect;
+
+    // Замена исходного объекта обновленной копией
+    this.game.getQuizzes()[index] = updatedQuiz;
+
+    // Сохранение результатов в localStorage
+    //this.saveTestResults();
+
     this.ui.showIsCorrect(index, isCorrect);
 
     await this.ui.hideCard();
