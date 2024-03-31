@@ -601,13 +601,16 @@ class QuizService {
           isCorrect = answer === quizzes[index].correctAnswer;
           break;
         case 'input':
-          //Проверка на число
+          // Проверка на число
           if (!isNaN(parseFloat(answer)) && isFinite(answer)) {
             // Ответ является числом
             isCorrect = parseFloat(answer) === quizzes[index].correctAnswer;
-          } else {
-            // Ответ не является числом, приводим его к нижнему регистру
+          } else if (typeof quizzes[index].correctAnswer === 'string') {
+            // Ответ не является числом и правильный ответ - строка
             isCorrect = answer.toLowerCase() === quizzes[index].correctAnswer.toLowerCase();
+          } else {
+            // Правильный ответ не является строкой, сравниваем значения напрямую
+            isCorrect = answer === quizzes[index].correctAnswer;
           }
           break;
         case 'checkbox':

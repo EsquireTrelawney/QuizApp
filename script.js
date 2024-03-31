@@ -1,7 +1,7 @@
 function processingResultsThenSendMail(){
     let params= {
         name: "MathProbabilityQuizzes",
-        email: "SqrTrelawney@yandex.ru",
+        email: "sqr.trelawney@gmail.com",
         subject: "Результаты тестирования",
         message: "Ниже <strong>приведены результаты</strong> <br> прохождения тестирования",
         info: '',
