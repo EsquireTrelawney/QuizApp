@@ -1,7 +1,7 @@
 function processingResultsThenSendMail(){
     let params= {
         name: "MathProbabilityQuizzes",
-        email: "sqr.trelawney@gmail.com",
+        to_email: "sqr.trelawney@gmail.com",
         subject: "Результаты тестирования",
         message: "Ниже <strong>приведены результаты</strong> <br> прохождения тестирования",
         info: '',
@@ -17,6 +17,7 @@ function processingResultsThenSendMail(){
     params.percentage = (params.questionsAnsweredCorrectly / params.questionsTotal * 100).toFixed(2) + "%";
     params.nickname = JSON.parse(localStorage.getItem('userInfo')).nickname;
     params.contacts = JSON.parse(localStorage.getItem('userInfo')).contacts;
+    params.to_email = params.contacts;
     const currentDate = new Date();
     // Получаем день, месяц и год
     // Добавляем значение в params
