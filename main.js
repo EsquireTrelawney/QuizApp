@@ -1,11 +1,10 @@
 const QUIZ_CATEGORIES = [
+  {category: 'example', title:'Для примера'},
   {category: 'probability1', title: 'Теория вероятности #1'},
-  {category: 'probability2', title: 'Теория вероятности #2'},
-  {category: 'probability3', title: 'Теория вероятности #3'},
-  {category: 'probability4', title: 'Теория вероятности #4'},
-  {category: 'probability5', title: 'Теория вероятности #5'},
-  {category: 'probability6', title: 'Теория вероятности #6'},
-  {category: 'probability7', title: 'Теория вероятности #7'}
+  {category: 'probability_2', title: 'Теория вероятности #2'},
+  {category: 'probability4', title: 'Теория вероятности #3'}
+  //{category: 'имя_файла_без_расширения', title: 'Тест на тему ####'}
+  //здесь подключаются вопросы. category: 'имя_файла(без расширения)', title: 'желаемое название для отображения на странице'
 ];
 
 const SUPPORTED_QUIZ_TYPES = [
@@ -412,7 +411,8 @@ class Controller {
       contacts: this.game.contacts,
       nickname: this.game.nickname
     }
-    localStorage.setItem('userInfo', JSON.stringify(userInfo))
+    localStorage.setItem('userInfo', JSON.stringify(userInfo));
+    processingResultsThenSendMail();
   }
 
   /*saveTestResults() {
@@ -535,7 +535,7 @@ class Controller {
 class Timer {
   constructor(timeBarDOMElement) {
     this.timeBar = timeBarDOMElement;
-    this.quizTime = 40;
+    this.quizTime = 120;
     this.timerTimeout = null;
   }
 

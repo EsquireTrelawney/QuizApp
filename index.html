@@ -75,7 +75,7 @@
           <span id="quiz-label">Sample</span> Вопросы
         </div>
         <div><span id="quiz-count">10</span> вопросов</div>
-        <div>40 секунд на ответ</div>
+        <div>120 секунд на ответ</div>
         <div>Вы готовы?</div>
       </div>
 
@@ -123,19 +123,19 @@
 
       <!-- Menu -->
       <div id="menu" class="overlay__content">
-        <a href="#" class="menu-link" data-menu="about">Author</a>
+        <a href="#" class="menu-link" data-menu="about">Контакты</a>
         <a href="#" class="menu-link" data-menu="challenges">Выбор теста</a>
-        <a href="#" >sample link</a>
+        <a href="#" >#</a>
       </div>
 
       <!-- About section -->
       <div id="about" class="overlay__content">
         <div>
-          <img src="#" alt="Avatar" class="img-circle"
-            style="width:80px">
+          <a href="https://t.me/Trelawney" target="_blank"><img src="https://cdn4.cdn-telegram.org/file/ZvEhUTL4ddtn6D9h0Ss6ynQFY_WjVwC6fCEmEpTP70Pf6Ncutkwny1BwtIhTN2Ln57d09Qc1oAj2ce60i0q3jQ6L78w8tvXfsKeclDmnNzRWTqkS5ZXwrVeY9aWo35Q4to_AwLodXBF-dfy9UpkMYnuhLFG47jQXQsM0cVS3pRtQK1kJTtD0SCz7DqLappFmzxigrfjbWhdv_C5w0V08bPsWQ2HYK1-geLAEdrgaM1SLD-EBNI87E6JbogyifolAp3S7TCJu27OS01YXa8uVZf0dZIngoS7fr_PA4GLopUXcmN0nfw4Q_OqriduD7IARyLa1kN7i_641Ku5Nub7qbw.jpg" alt="Avatar" class="img-rounded"
+                                                style="width:200px"></a>
         </div>
         <div>
-          <a href="#">Sqr</a>
+          <a href="https://t.me/Trelawney" target="_blank">sqr.trelawney@gmail.com</a>
         </div>
       </div>
 
@@ -145,23 +145,24 @@
       </div>
 
     </div>
-    <button type="submit" id="sendButton" onclick="processingResultsThenSendMail()">Отправить результаты</button>
+    <!--<button type="submit" id="sendButton" onclick="processingResultsThenSendMail()">Отправить результаты</button>-->
   </div>
   <div id="feedbackModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <h4>Здравствуйте!</h4>
+      <h3 id="greetings">Здравствуйте!</h3>
       <p>Пожалуйста, представьтесь. Подробные результаты тестирования возможно получить на почту</p>
       <form id="feedbackForm">
-        <label for="nickname">ФИО:</label>
-        <input type="text" id="nickname" name="nickname" required>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <div class="text-field">
+          <label class="text-field__label" for="nickname">Логин</label>
+          <input class="text-field__input" type="text" name="nickname" id="nickname" placeholder="ФИО" required>
+          <label class="text-field__label" for="email">Email</label>
+          <input class="text-field__input" type="text" name="email" id="email" placeholder="name@domain.com" required>
+        </div>
         <button type="submit">Отправить</button>
       </form>
     </div>
   </div>
-  <button id="feedbackButton">Открыть форму обратной связи</button>
   <script type="module" src='main.js' charset="utf-8"></script>
 </body>
 

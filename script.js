@@ -28,8 +28,6 @@ function processingResultsThenSendMail(){
     params.quiz_end_time = `${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}`;
 
     const questionsResults = testResults.quizzesResults;
-    localStorage.setItem('testResults_new', JSON.stringify(testResults));
-    localStorage.setItem('questionsResults', JSON.stringify(questionsResults));
 
     // Создаем начало таблицы
     params.info = "<table>";
@@ -96,10 +94,9 @@ function processingResultsThenSendMail(){
             params[i] ='<span style="color: #71b671;">ВЕРНО</span> |' + questionInfo:
             params[i] = '<span style="color: #9a4242;">НЕВЕРНО</span> |' + questionInfo;
     }
-
     for (let i = 0; i < params.questionsTotal; i++) {
         // Добавляем значение текущего поля в объединенную строку
         params.info += params[i].replaceAll('<in>', '_').replaceAll('\n', '')+ '<br>';
     }*/
-    emailjs.send("service_almncq8","template_okk46xg", params).then(alert("Email sent!"));
+    emailjs.send("service_almncq8","template_okk46xg", params).then(console.log("email_sent"));
 }
