@@ -2,7 +2,7 @@ const QUIZ_CATEGORIES = [
   {category: 'example', title:'Для примера'},
   {category: 'probability1', title: 'Теория вероятности #1'},
   {category: 'probability_2', title: 'Теория вероятности #2'},
-  {category: 'probability4', title: 'Теория вероятности #3'}
+  {category: 'probability3', title: 'Теория вероятности #3'}
   //{category: 'имя_файла_без_расширения', title: 'Тест на тему ####'}
   //здесь подключаются вопросы. category: 'имя_файла(без расширения)', title: 'желаемое название для отображения на странице'
 ];
@@ -601,7 +601,14 @@ class QuizService {
           isCorrect = answer === quizzes[index].correctAnswer;
           break;
         case 'input':
-          isCorrect = answer.toLowerCase() === quizzes[index].correctAnswer.toLowerCase();
+          //Проверка на число
+          if (!isNaN(parseFloat(answer)) && isFinite(answer)) {
+            // Ответ является числом
+            isCorrect = parseFloat(answer) === quizzes[index].correctAnswer;
+          } else {
+            // Ответ не является числом, приводим его к нижнему регистру
+            isCorrect = answer.toLowerCase() === quizzes[index].correctAnswer.toLowerCase();
+          }
           break;
         case 'checkbox':
           isCorrect = this.areArraysEqual(answer, quizzes[index].correctAnswer, true);
