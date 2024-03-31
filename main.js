@@ -408,9 +408,6 @@ class Controller {
     if (this.isSubmittingAnswer) {
       return;
     }
-    if (this.game.getCurrentQuizIndex() === this.game.numberOfQuizzes-1){
-      document.dispatchEvent(new Event('quizEnded'));
-    }
     this.isSubmittingAnswer = true;
 
     let answer = this.ui.getUserAnswer(this.game.getCurrentQuizType());
@@ -430,17 +427,11 @@ class Controller {
 
     // Создание копии исходного объекта quizzes
     let updatedQuiz = Object.assign({}, this.game.getQuizzes()[index]);
-
-    // Или с использованием оператора расширения
-    // let updatedQuiz = { ...this.game.getQuizzes()[index] };
-
-    // Обновление копии объекта с добавлением информации о ответе пользователя
+    // Обновление копии объекта с добавлением информации об ответе пользователя
     updatedQuiz.userAnswer = answer;
     updatedQuiz.isCorrect = isCorrect;
-
     // Замена исходного объекта обновленной копией
     this.game.getQuizzes()[index] = updatedQuiz;
-
     // Сохранение результатов в localStorage
     //this.saveTestResults();
 
@@ -464,14 +455,17 @@ class Controller {
         //);
       //}
     } else {
-      // Если не рендерит следующую карточку
+      // Если не рендерит следующую карточку,а следовательно конец квиза
+      document.dispatchEvent(new Event('quizEnded'));
       this.ui.showResult(
           this.game.getNumberOfCorrectAnswers(),
           this.game.numberOfQuizzes,
           this.quizService.getQuizzesWithLayout(this.game.getQuizzes())
       );
     }
-
+    /*if (this.game.getCurrentQuizIndex() === this.game.numberOfQuizzes-1){
+      document.dispatchEvent(new Event('quizEnded'));
+    }*/
     this.isSubmittingAnswer = false;
   }
 
@@ -820,7 +814,7 @@ function eventListeners() {
   const controller = new Controller(ui, game, quizService);
 
   document.addEventListener('quizEnded', () => {
-    console.log('quizEnded event fired!');
+    //console.log('quizEnded event fired!');
     controller.saveTestResults();
   })
 
