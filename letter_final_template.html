@@ -69,7 +69,10 @@
           text-align: right;
       }
       .info-table td.value {
-          text-align: left;
+          text-align: right;
+      }
+      .message_info p{
+          margin: 5px 0;
       }
       .stats {
           text-align: center;
@@ -99,15 +102,16 @@
           font-weight: bold;
       }
       .info-box {
-          text-align: center; /* Центрируем содержимое по горизонтали */
+          text-align: center;
           margin-top: 20px;
           padding: 5px;
           border-radius: 5px;
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Тень */
       }
       .info-box .info {
-          /* Добавляем стили для блока info внутри info-box */
-          display: inline-block; /* Устанавливаем блочный элемент с возможностью применения горизонтальных и вертикальных отступов */
+          text-align: center;
+          margin: 0 auto; /* Для центрирования по горизонтали */
+          max-width: 600px; /* Примерное значение ширины */
       }
       .stats {
           max-width: 50%;
@@ -162,6 +166,22 @@
       <td class="value">{{date}}</td>
     </tr>
     <tr>
+      <td class="label">Время начала теста:</td>
+      <td class="value">{{quiz_start_time}}</td>
+    </tr>
+    <tr>
+      <td class="label">Время окончания теста:</td>
+      <td class="value">{{quiz_end_time}}</td>
+    </tr>
+    <tr>
+      <td class="label">Пользователь:</td>
+      <td class="value">{{nickname}}</td>
+    </tr>
+    <tr>
+      <td class="label">Контакты:</td>
+      <td class="value">{{contacts}}</td>
+    </tr>
+    <tr>
       <td class="label">Операционная система:</td>
       <td class="value">{{user_os}}</td>
     </tr>
@@ -182,18 +202,19 @@
       <td class="value">{{user_version}}<br>{{user_referrer}}</td>
     </tr>
   </table>
+  <div class=message_info>
+    <p class="message">{{{message}}}</p>
+  </div>
   <div class="stats">
     <p>Всего вопросов: <span class="total">{{questionsTotal}}</span> <br>
-      Правильно отвечено: <span class="answered">{{questionsAnsweredCorrectly}}</span> <br>
+      Правильных ответов: <span class="answered">{{questionsAnsweredCorrectly}}</span> <br>
       Процент: <span class="percentage">{{percentage}}</span></p>
   </div>
   <div class="info-box">
-    <!-- {{{}} - динамическая переменная, которая будет инжектить HTML -->
-    <div class="info">{{{info}}}</div>
+    <p class="info">{{{info}}}</p>
   </div>
   <div class="footer">
     <p>{{from_name}}:</p>
-    <p class="message">{{{message}}}</p>
     <p class="contacts">{{nickname}} {{contacts}}</p>
   </div>
 </div>

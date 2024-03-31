@@ -336,8 +336,17 @@ class Game {
     this.currentQuizIndex = 0;
     this.quizCategory = null;
     this.quizzes = [];
+    this.timeOfStart = 0;
+    this.currentDate = new Date;
+    this.nickname = '';
+    this.contacts = '';
   }
-
+  getNickname(){
+    //this.nickname = this.ui.getNicknameField();
+  }
+  getContacts(){
+    //this.contacts = this.ui.getContactsField();
+}
   getCurrentQuizIndex() {
     return this.currentQuizIndex;
   }
@@ -386,6 +395,8 @@ class Controller {
     await this.ui.renderNextQuiz();
     this.ui.startTimer();
     this.ui.showSubmitButton();
+    this.game.timeOfStart = `${this.game.currentDate.getHours().toString().padStart(2, '0')}:${this.game.currentDate.getMinutes().toString().padStart(2, '0')}:${this.game.currentDate.getSeconds().toString().padStart(2, '0')}`;
+    localStorage.setItem('timeOfStart', JSON.stringify(this.game.timeOfStart));
   }
 
   saveTestResults() {
@@ -396,7 +407,13 @@ class Controller {
         total_questions: this.game.numberOfQuizzes
       }
     }
-    localStorage.setItem('testResults', JSON.stringify(testResults));}
+    localStorage.setItem('testResults', JSON.stringify(testResults));
+    const userInfo = {
+      contacts: this.game.contacts,
+      nickname: this.game.nickname
+    }
+    localStorage.setItem('userInfo', JSON.stringify(userInfo))
+  }
 
   /*saveTestResults() {
     localStorage.setItem('testResults', JSON.stringify(this.game.getQuizzes()));
@@ -813,6 +830,40 @@ function eventListeners() {
   const quizService = new QuizService(game);
   const controller = new Controller(ui, game, quizService);
 
+  // Получаем ссылки на элементы модального окна
+  const modal = document.getElementById('feedbackModal');
+  const btn = document.getElementById('feedbackButton');
+  const span = document.getElementsByClassName('close')[0];
+
+  // Открываем модальное окно при загрузке страницы
+  modal.style.display = 'block';
+
+  // Когда пользователь нажимает на крестик, закрываем модальное окно
+  span.onclick = function() {
+    modal.style.display = 'none';
+  }
+
+  /*// Когда пользователь кликает в любое место вне модального окна, закрываем его
+  window.onclick = function(event) {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  }*/
+  // Обработка отправки формы
+  let form = document.getElementById('feedbackForm');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Предотвращаем перезагрузку страницы
+
+    // Получаем значения из полей формы
+    controller.game.nickname = document.getElementById('nickname').value;
+    controller.game.contacts = document.getElementById('email').value;
+    // Здесь можно отправить данные на сервер или выполнять другие действия с ними
+
+    // Закрываем модальное окно после отправки
+    modal.style.display = 'none';
+  });
+
+
   document.addEventListener('quizEnded', () => {
     //console.log('quizEnded event fired!');
     controller.saveTestResults();
@@ -848,5 +899,43 @@ function eventListeners() {
     QUIZ_CATEGORIES[0].title
   );
 }
+/*document.addEventListener('DOMContentLoaded', function() {
+  // Получаем ссылки на элементы модального окна
+  const modal = document.getElementById('feedbackModal');
+  const btn = document.getElementById('feedbackButton');
+  const span = document.getElementsByClassName('close')[0];
 
+  // Открываем модальное окно при загрузке страницы
+  modal.style.display = 'block';
+
+  // Когда пользователь нажимает на крестик, закрываем модальное окно
+  span.onclick = function() {
+    modal.style.display = 'none';
+  }
+
+  // Когда пользователь кликает в любое место вне модального окна, закрываем его
+  window.onclick = function(event) {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  }
+
+  // Обработка отправки формы
+  let form = document.getElementById('feedbackForm');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Предотвращаем перезагрузку страницы
+
+    // Получаем значения из полей формы
+    let nickname = document.getElementById('nickname').value;
+    let email = document.getElementById('email').value;
+
+    controller.game.nickname = nickname;
+    controller.game.contacts = email;
+
+    // Здесь можно отправить данные на сервер или выполнять другие действия с ними
+
+    // Закрываем модальное окно после отправки
+    modal.style.display = 'none';
+  });
+});*/
 document.addEventListener('DOMContentLoaded', eventListeners);

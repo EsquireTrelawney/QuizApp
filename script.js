@@ -3,19 +3,35 @@ function processingResultsThenSendMail(){
         name: "MathProbabilityQuizzes",
         email: "SqrTrelawney@yandex.ru",
         subject: "Результаты тестирования",
-        message: "Ниже <strong>приведены результаты</strong> <br> прохождения тестирования пользователем ",
-        info: ''
+        message: "Ниже <strong>приведены результаты</strong> <br> прохождения тестирования",
+        info: '',
+        nickname: '',
+        contacts: '',
+        date: '',
+        quiz_start_time: '',
+        quiz_end_time: ''
     }
     let testResults = JSON.parse(localStorage.getItem('testResults'));
     params.questionsAnsweredCorrectly = testResults.correct_total.correct_answers;
     params.questionsTotal = testResults.correct_total.total_questions;
     params.percentage = (params.questionsAnsweredCorrectly / params.questionsTotal * 100).toFixed(2) + "%";
+    params.nickname = JSON.parse(localStorage.getItem('userInfo')).nickname;
+    params.contacts = JSON.parse(localStorage.getItem('userInfo')).contacts;
+    const currentDate = new Date();
+    // Получаем день, месяц и год
+    // Добавляем значение в params
+    params.date = `${String(currentDate.getDate()).padStart(2, '0')}.${String(currentDate.getMonth() + 1).padStart(2, '0')}.${currentDate.getFullYear()}`;
+
+    // Получаем время окончания тестирования
+    // добавляем ведущий ноль, если значение меньше 10
+    params.quiz_start_time = JSON.parse(localStorage.getItem('timeOfStart'));
+    params.quiz_end_time = `${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}:${currentDate.getSeconds().toString().padStart(2, '0')}`;
 
     const questionsResults = testResults.quizzesResults;
     localStorage.setItem('testResults_new', JSON.stringify(testResults));
     localStorage.setItem('questionsResults', JSON.stringify(questionsResults));
 
-// Создаем начало таблицы
+    // Создаем начало таблицы
     params.info = "<table>";
 
     for (let i = 0; i < questionsResults.length; i++) {
@@ -48,12 +64,13 @@ function processingResultsThenSendMail(){
         //const rowColor = singleQuestionResults.isCorrect ? 'green' : 'red';
 
         // Добавляем информацию о вопросе в таблицу
-        params.info += /*`<tr style="background-color:${rowColor}; color:white;">${*/questionInfo.replaceAll('<in>', '_').replaceAll('\n', '')/*}</tr>`*/;
+        params.info += questionInfo.replaceAll('<in>', '_').replaceAll('\n', '');
     }
 
 // Закрываем таблицу
     params.info += "</table>";
 
+    // может понадобится для будущего перехода на скрипт .php
     /*const questionsResults = testResults.quizzesResults;
     localStorage.setItem('testResults_new', JSON.stringify(testResults));
     localStorage.setItem('questionsResults', JSON.stringify(questionsResults));
@@ -84,7 +101,5 @@ function processingResultsThenSendMail(){
         // Добавляем значение текущего поля в объединенную строку
         params.info += params[i].replaceAll('<in>', '_').replaceAll('\n', '')+ '<br>';
     }*/
-    console.log(params.info);
-    localStorage.setItem('params_info', JSON.stringify(params));
     emailjs.send("service_almncq8","template_okk46xg", params).then(alert("Email sent!"));
 }
