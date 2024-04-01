@@ -157,7 +157,7 @@
           <label class="text-field__label" for="nickname">Логин</label>
           <input class="text-field__input" type="text" name="nickname" id="nickname" placeholder="ФИО" required>
           <label class="text-field__label" for="email">Email</label>
-          <input class="text-field__input" type="text" name="email" id="email" placeholder="name@domain.com" required>
+          <input class="text-field__input" type="email" pattern="^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,6}$" name="email" id="email" placeholder="name@domain.com" required>
         </div>
         <button type="submit">Отправить</button>
       </form>
