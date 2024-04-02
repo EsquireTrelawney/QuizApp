@@ -6,9 +6,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <!-- Swiper -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.2/css/swiper.min.css"
-    integrity="sha256-ifcIIxgLk3qxkzqWDtHuFnc5soeWWREpen87keBV2Bc=" crossorigin="anonymous" />
+        integrity="sha256-ifcIIxgLk3qxkzqWDtHuFnc5soeWWREpen87keBV2Bc=" crossorigin="anonymous" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.2/js/swiper.min.js"
-    integrity="sha256-77+0bckeKQsq6PCikMAouwyAzAMgygDz+HCWQfyxu4A=" crossorigin="anonymous"></script>
+          integrity="sha256-77+0bckeKQsq6PCikMAouwyAzAMgygDz+HCWQfyxu4A=" crossorigin="anonymous"></script>
   <script type="text/javascript"
           src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
   </script>
@@ -29,141 +29,141 @@
 </head>
 
 <body>
-  <div class="main-container">
-    <div class="main-container__header">
-      <div class="interactive-container">
-        <!-- Menu Icon -->
-        <div id="menuButton" class="menu-container">
-          <div class="menu-container__bar"></div>
-          <div class="menu-container__bar"></div>
-          <div class="menu-container__bar"></div>
-        </div>
-
-        <!-- Quiz Indicators -->
-        <div>
-          <div id="quiz-indicators" class="indicators">
-            <span class="indicator"></span><span class="indicator"></span><span class="indicator"></span><span
-              class="indicator"></span><span class="indicator"></span>
-            <span class="indicator"></span><span class="indicator"></span><span class="indicator"></span><span
-                  class="indicator"></span><span class="indicator"></span>
-          </div>
-
-          <div class="indicators swiper-custom-pagination swiper-pagination-bullets hidden">
-          </div>
-        </div>
-
-        <div class="menu-container menu-container--fake"></div>
+<div class="main-container">
+  <div class="main-container__header">
+    <div class="interactive-container">
+      <!-- Menu Icon -->
+      <div id="menuButton" class="menu-container">
+        <div class="menu-container__bar"></div>
+        <div class="menu-container__bar"></div>
+        <div class="menu-container__bar"></div>
       </div>
-
-      <!-- Progress bar -->
-      <div class="timer-container">
-        <div id="timeBar" class="timer-container__timer invisible"></div>
+      
+      <!-- Quiz Indicators -->
+      <div>
+        <div id="quiz-indicators" class="indicators">
+          <span class="indicator"></span><span class="indicator"></span><span class="indicator"></span><span
+                class="indicator"></span><span class="indicator"></span>
+          <span class="indicator"></span><span class="indicator"></span><span class="indicator"></span><span
+                class="indicator"></span><span class="indicator"></span>
+        </div>
+        
+        <div class="indicators swiper-custom-pagination swiper-pagination-bullets hidden">
+        </div>
       </div>
+      
+      <div class="menu-container menu-container--fake"></div>
     </div>
-
-    <!-- Countdown -->
-    <div id="countdown" class="countdown hidden"></div>
-
-    <!-- Loader -->
-    <div id="loader" class="loader-container hidden">
-      <div class="loader"></div>
+    
+    <!-- Progress bar -->
+    <div class="timer-container">
+      <div id="timeBar" class="timer-container__timer invisible"></div>
     </div>
-
-    <!-- Quiz description -->
-    <div id="quiz-description"><div class="card text-center">
-        <div class="quiz-description__title">
-          <span id="quiz-label">Sample</span> Вопросы
-        </div>
-        <div><span id="quiz-count">10</span> вопросов</div>
-        <div>120 секунд на ответ</div>
-        <div>Вы готовы?</div>
-      </div>
-
-      <button id="startButton" class="submit">НАЧАТЬ</button>
-    </div>
-
-    <!-- Quiz -->
-    <form id="quiz" class="hidden">
-      <div id="quiz-card" class="card">
-      </div>
-
-      <button type="submit" id="submitButton" class="submit">Подтвердить</button>
-    </form>
-
-    <!-- Result -->
-    <div id="result-card" class="hidden">
-      <div class="card text-center">
-        <div class="quiz-result__title">Результат</div>
-        <div id="result" class="quiz-result__title">3/5</div>
-        <div class="quiz-result__button-container">
-          <button id="view-answers" class="button-default">Показать ответы</button>
-        </div>
-      </div>
+  </div>
   
-      <button class="submit restart">Заново</button>
-    </div>
-
-    <!-- Slides with answers -->
-    <div id="answers" class="hidden">
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <!-- Slides -->
-        </div>
-      </div>
-
-      <button class="submit restart">Заново</button>
-    </div>
-
-    <!-- Navigation -->
-    <div id="navigation" class="overlay">
-      <div class="overlay__header">
-        <a href="#" class="menu-link overlay__header__link" data-menu="menu">&larr;</a>
-        <a href="#" id="closeMenuButton" class="overlay__header__link">&times;</a>
-      </div>
-
-      <!-- Menu -->
-      <div id="menu" class="overlay__content">
-        <a href="#" class="menu-link" data-menu="about">Контакты</a>
-        <a href="#" class="menu-link" data-menu="challenges">Выбор теста</a>
-        <a href="#" >#</a>
-      </div>
-
-      <!-- About section -->
-      <div id="about" class="overlay__content">
-        <div>
-          <a href="https://t.me/Trelawney" target="_blank"><img src="https://cdn4.cdn-telegram.org/file/ZvEhUTL4ddtn6D9h0Ss6ynQFY_WjVwC6fCEmEpTP70Pf6Ncutkwny1BwtIhTN2Ln57d09Qc1oAj2ce60i0q3jQ6L78w8tvXfsKeclDmnNzRWTqkS5ZXwrVeY9aWo35Q4to_AwLodXBF-dfy9UpkMYnuhLFG47jQXQsM0cVS3pRtQK1kJTtD0SCz7DqLappFmzxigrfjbWhdv_C5w0V08bPsWQ2HYK1-geLAEdrgaM1SLD-EBNI87E6JbogyifolAp3S7TCJu27OS01YXa8uVZf0dZIngoS7fr_PA4GLopUXcmN0nfw4Q_OqriduD7IARyLa1kN7i_641Ku5Nub7qbw.jpg" alt="Avatar" class="img-rounded"
-                                                style="width:200px"></a>
-        </div>
-        <div>
-          <a href="https://t.me/Trelawney" target="_blank">sqr.trelawney@gmail.com</a>
-        </div>
-      </div>
-
-      <!-- Challenges section -->
-      <div id="challenges" class="overlay__content">
-        <div id="quiz-categories"></div>
-      </div>
-
-    </div>
-    <!--<button type="submit" id="sendButton" onclick="processingResultsThenSendMail()">Отправить результаты</button>-->
+  <!-- Countdown -->
+  <div id="countdown" class="countdown hidden"></div>
+  
+  <!-- Loader -->
+  <div id="loader" class="loader-container hidden">
+    <div class="loader"></div>
   </div>
-  <div id="feedbackModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h3 id="greetings">Здравствуйте!</h3>
-      <p>Пожалуйста, представьтесь. Подробные результаты тестирования возможно получить на почту</p>
-      <form id="feedbackForm">
-        <div class="text-field">
-          <label class="text-field__label" for="nickname">Логин</label>
-          <input class="text-field__input" type="text" name="nickname" id="nickname" placeholder="ФИО" required>
-          <label class="text-field__label" for="email">Email</label>
-          <input class="text-field__input" type="email" pattern="^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,6}$" name="email" id="email" placeholder="name@domain.com" required>
-        </div>
-        <button type="submit">Отправить</button>
-      </form>
+  
+  <!-- Quiz description -->
+  <div id="quiz-description"><div class="card text-center">
+    <div class="quiz-description__title">
+      Тестирование: <span id="quiz-label">Sample</span>
     </div>
+    <div><span id="quiz-count">10</span> вопросов</div>
+    <div>120 секунд на ответ</div>
+    <div>Вы готовы?</div>
   </div>
-  <script type="module" src='main.js' charset="utf-8"></script>
+    
+    <button id="startButton" class="submit">НАЧАТЬ</button>
+  </div>
+  
+  <!-- Quiz -->
+  <form id="quiz" class="hidden">
+    <div id="quiz-card" class="card">
+    </div>
+    
+    <button type="submit" id="submitButton" class="submit">Подтвердить</button>
+  </form>
+  
+  <!-- Result -->
+  <div id="result-card" class="hidden">
+    <div class="card text-center">
+      <div class="quiz-result__title">Результат</div>
+      <div id="result" class="quiz-result__title">3/5</div>
+      <div class="quiz-result__button-container">
+        <button id="view-answers" class="button-default">Показать ответы</button>
+      </div>
+    </div>
+    
+    <button class="submit restart">Заново</button>
+  </div>
+  
+  <!-- Slides with answers -->
+  <div id="answers" class="hidden">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+      </div>
+    </div>
+    
+    <button class="submit restart">Заново</button>
+  </div>
+  
+  <!-- Navigation -->
+  <div id="navigation" class="overlay">
+    <div class="overlay__header">
+      <a href="#" class="menu-link overlay__header__link" data-menu="menu">&larr;</a>
+      <a href="#" id="closeMenuButton" class="overlay__header__link">&times;</a>
+    </div>
+    
+    <!-- Menu -->
+    <div id="menu" class="overlay__content">
+      <a href="#" class="menu-link" data-menu="about">Контакты</a>
+      <a href="#" class="menu-link" data-menu="challenges">Выбор теста</a>
+      <a href="#" >#</a>
+    </div>
+    
+    <!-- About section -->
+    <div id="about" class="overlay__content">
+      <div>
+        <a href="https://t.me/Trelawney" target="_blank"><img src="https://cdn4.cdn-telegram.org/file/ZvEhUTL4ddtn6D9h0Ss6ynQFY_WjVwC6fCEmEpTP70Pf6Ncutkwny1BwtIhTN2Ln57d09Qc1oAj2ce60i0q3jQ6L78w8tvXfsKeclDmnNzRWTqkS5ZXwrVeY9aWo35Q4to_AwLodXBF-dfy9UpkMYnuhLFG47jQXQsM0cVS3pRtQK1kJTtD0SCz7DqLappFmzxigrfjbWhdv_C5w0V08bPsWQ2HYK1-geLAEdrgaM1SLD-EBNI87E6JbogyifolAp3S7TCJu27OS01YXa8uVZf0dZIngoS7fr_PA4GLopUXcmN0nfw4Q_OqriduD7IARyLa1kN7i_641Ku5Nub7qbw.jpg" alt="Avatar" class="img-rounded"
+                                                              style="width:200px"></a>
+      </div>
+      <div>
+        <a href="https://t.me/Trelawney" target="_blank">sqr.trelawney@gmail.com</a>
+      </div>
+    </div>
+    
+    <!-- Challenges section -->
+    <div id="challenges" class="overlay__content">
+      <div id="quiz-categories"></div>
+    </div>
+  
+  </div>
+  <!--<button type="submit" id="sendButton" onclick="processingResultsThenSendMail()">Отправить результаты</button>-->
+</div>
+<div id="feedbackModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3 id="greetings">Здравствуйте!</h3>
+    <p>Пожалуйста, представьтесь. Подробные результаты тестирования возможно получить на почту</p>
+    <form id="feedbackForm">
+      <div class="text-field">
+        <label class="text-field__label" for="nickname">Логин</label>
+        <input class="text-field__input" type="text" name="nickname" id="nickname" placeholder="ФИО" required>
+        <label class="text-field__label" for="email">Email</label>
+        <input class="text-field__input" type="email" pattern="^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,6}$" name="email" id="email" oninvalid="this.setCustomValidity('Убедитесь, что почта в верном формате. Например: mailname@domain.com')" oninput="this.setCustomValidity('')" placeholder="name@domain.com" required>
+      </div>
+      <button type="submit">Отправить</button>
+    </form>
+  </div>
+</div>
+<script type="module" src='main.js' charset="utf-8"></script>
 </body>
 
 </html>
