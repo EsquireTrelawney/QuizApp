@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Создание тестов</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <a href="../index.html" class="button button-main">На главную</a> <!-- Кнопка "На главную" -->
+  <h1>Создание тестов</h1>
+</header>
+<div class="container">
+  <form id="testForm">
+    <div class="form-group">
+      <label for="question">Вопрос: введите текст вопроса</label>
+      <input type="text" id="question" name="question" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Описание: введите его описание</label>
+      <textarea id="description" name="description" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="type">Тип вопроса: выберите тип вопроса</label>
+      <select id="type" name="type" required>
+        <option value="multi-input">Multi-input</option>
+        <option value="checkbox">Checkbox</option>
+        <option value="input">Input</option>
+        <option value="radio">Radio</option>
+      </select>
+    </div>
+    <div class="form-group" id="choices-container" style="display: none;">
+      <label for="choices">Варианты ответов (через запятую)</label>
+      <textarea id="choices" name="choices"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="correctAnswer">Правильный ответ: в случае с checkbox, radio - введите порядковый номер верного ответа, отсчёт идёт с 1</label>
+      <input type="text" id="correctAnswer" name="correctAnswer" required>
+    </div>
+    <div class="form-group">
+      <label for="madeBy">Автор</label>
+      <input type="text" id="madeBy" name="madeBy">
+    </div>
+    <button type="button" class="button" onclick="addQuestion()">Добавить вопрос</button>
+    <button type="button" class="button" onclick="saveToFile()">Сохранить</button>
+  </form>
+  <div id="result" class="form-group" style="margin-top: 20px;">
+    <h3>JSON результат для предпросмотра:</h3>
+    <pre id="jsonOutput"></pre>
+  </div>
+</div>
+<script src="create-quiz-script.js"></script>
+</body>
+</html>

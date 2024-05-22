@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Template</title>
+  <style>
+      body {
+          margin: 0;
+          padding: 0;
+          font-family: Arial, sans-serif;
+          background-color: #f4f4f4;
+      }
+      .container {
+          max-width: 900px;
+          margin: 20px auto;
+          padding: 20px;
+          background-color: #ffffff;
+          border-radius: 10px;
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+          text-align: center;
+          margin: 0 auto;
+          position: relative;
+          padding: 20px;
+          max-width: 30%;
+      }
+      .header img {
+          max-width: 100%;
+          height: auto;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+      .header .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.4);
+          border-radius: 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      .header .overlay p {
+          color: white;
+          font-size: 24px;
+          font-weight: bold;
+          text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.9); /* добавляем контур */
+          -webkit-text-stroke: 1px black; /* для WebKit браузеров (Chrome, Safari) */
+      }
+      .info-table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 20px;
+      }
+      .info-table td {
+          padding: 10px;
+          border-bottom: 1px solid #ddd;
+      }
+      .info-table td:last-child {
+          border-bottom: none;
+      }
+      .info-table td.label {
+          font-weight: bold;
+          color: #555;
+          text-align: right;
+      }
+      .info-table td.value {
+          text-align: left;
+      }
+      .message_info p{
+          margin: 5px 0;
+      }
+      .stats {
+          text-align: center;
+          margin-bottom: 20px;
+      }
+      .stats p .total,
+      .stats p .answered,
+      .stats p .percentage{
+          display: inline-block;
+          padding: 2px 5px;
+          margin: 1px;
+          border: 1px solid #000;
+          color: #0e0707;
+          background-color: #5dad67;
+          border-radius: 3px;
+      }
+      .footer {
+          text-align: right;
+      }
+      .footer p {
+          margin: 5px 0;
+      }
+      .footer .message {
+          font-style: italic;
+      }
+      .footer .contacts {
+          font-weight: bold;
+      }
+      .info-box {
+          text-align: center;
+          margin-top: 20px;
+          padding: 5px;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Тень */
+      }
+      .info-box .info {
+          text-align: center;
+          margin: 0 auto; /* Для центрирования по горизонтали */
+          max-width: 600px; /* Примерное значение ширины */
+      }
+      .stats {
+          max-width: 50%;
+          margin: 0 auto; /* Устанавливаем отступы слева и справа в auto */
+          text-align: right;
+          background-color: #faf8d0;
+          padding: 3px;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .stats p {
+          font-size: 18px; /* Размер текста */
+          color: #333; /* Цвет текста */
+          font-weight: bold; /* Жирный текст */
+      }
+      /* Медиазапрос для устройств с шириной экрана больше 768px (например, компьютеры) */
+      @media screen and (min-width: 768px) {
+          .header {
+              max-width: 25%; /* для устройств типа компьютера */
+          }
+          .stats {
+              max-width: 30%;
+          }
+      }
+
+      /* Медиазапрос для всех остальных устройств */
+      @media screen and (max-width: 767px) {
+          .header {
+              max-width: 40%; /* для всех остальных устройств */
+          }
+          .header .overlay p {
+              font-size: 20px;
+          }
+          .stats p{
+              font-size: 16px;
+          }
+      }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <img src='https://i.postimg.cc/ZKv19zcd/logo.png' alt='logo'/>
+    <div class="overlay">
+      <p>Итоги теста</p>
+    </div>
+  </div>
+  <table class="info-table">
+    <tr>
+      <td class="label">Дата:</td>
+      <td class="value"><span id="date">{{date}}</span></td>
+    </tr>
+    <tr>
+      <td class="label">Время начала теста:</td>
+      <td class="value">{{quiz_start_time}}</td>
+    </tr>
+    <tr>
+      <td class="label">Время окончания теста:</td>
+      <td class="value">{{quiz_end_time}}</td>
+    </tr>
+    <tr>
+      <td class="label">Пользователь:</td>
+      <td class="value">{{nickname}}</td>
+    </tr>
+    <tr>
+      <td class="label">Контакты:</td>
+      <td class="value">{{contacts}}</td>
+    </tr>
+    <tr>
+      <td class="label">Операционная система:</td>
+      <td class="value">{{user_os}}</td>
+    </tr>
+    <tr>
+      <td class="label">IP адрес:</td>
+      <td class="value">{{user_ip}}</td>
+    </tr>
+    <tr>
+      <td class="label">Платформа:</td>
+      <td class="value">{{user_platform}}</td>
+    </tr>
+    <tr>
+      <td class="label">Браузер:</td>
+      <td class="value">{{user_browser}}</td>
+    </tr>
+    <tr>
+      <td class="label">Версия браузера и реферер:</td>
+      <td class="value">{{user_version}}<br>{{user_referrer}}</td>
+    </tr>
+  </table>
+  <div class=message_info>
+    <p class="message">{{{message}}}</p>
+  </div>
+  <div class="stats">
+    <p>Всего вопросов: <span class="total">{{questionsTotal}}</span> <br>
+      Правильных ответов: <span class="answered">{{questionsAnsweredCorrectly}}</span> <br>
+      Процент: <span class="percentage">{{percentage}}</span></p>
+  </div>
+  <div class="info-box">
+    <p class="info">{{{info}}}</p>
+  </div>
+  <div class="footer">
+    <p>{{from_name}}:</p>
+    <p class="contacts">{{nickname}} {{contacts}}</p>
+  </div>
+</div>
+</body>
+</html>
